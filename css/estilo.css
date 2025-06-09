@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Pixelify+Sans:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#tela {
+    background-color: palegoldenrod;
+    margin: 0 auto;
+    display: block;
+    border: 5px solid black;
+}
+
+#painel-controle {
+    text-align: center;
+}
+
+:root {
+    --flamengo-red: #DA291C;
+    --flamengo-red-light: #FF5C5C;
+    --arcade-black: #0A0A0A;
+    --arcade-white: #FFFFFF;
+    --arcade-gray: #CCCCCC;
+    --hud-border: #222;
+    --hud-border-red: #8B0000;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background: var(--arcade-black);
+    color: var(--arcade-white);
+    font-family: 'Press Start 2P', 'VT323', 'Pixelify Sans', monospace;
+    image-rendering: pixelated;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    image-rendering: pixelated;
+}
+
+#container-jogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    color: var(--flamengo-red);
+    text-shadow: 2px 2px 0 var(--arcade-black), 0 0 4px var(--flamengo-red-light);
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    font-family: 'Press Start 2P', 'VT323', 'Pixelify Sans', monospace;
+}
+
+#tela {
+    background: var(--arcade-black);
+    border: 6px solid var(--flamengo-red);
+    box-shadow: 0 0 0 3px var(--arcade-white), 0 0 0 6px var(--arcade-black);
+    display: block;
+    margin: 0 auto;
+    image-rendering: pixelated;
+    width: 400px;
+    height: 400px;
+    max-width: 90vw;
+    max-height: 90vw;
+}
+
+#painel-controle {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: var(--arcade-black);
+    border: 2px solid var(--hud-border-red);
+    padding: 12px 24px;
+    margin: 0 auto;
+    margin-top: 12px;
+    font-family: 'Press Start 2P', 'VT323', 'Pixelify Sans', monospace;
+    color: var(--arcade-white);
+    box-shadow: 0 0 0 2px var(--arcade-gray);
+}
+
+#painel-controle label,
+#painel-controle select,
+#painel-controle button {
+    font-family: inherit;
+    font-size: 0.8rem;
+    background: var(--arcade-black);
+    color: var(--arcade-white);
+    border: 2px solid var(--flamengo-red);
+    padding: 4px 8px;
+    margin: 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+    image-rendering: pixelated;
+}
+
+#painel-controle select,
+#painel-controle button {
+    cursor: pointer;
+}
+
+#painel-controle button:active {
+    border-color: var(--flamengo-red-light);
+    color: var(--flamengo-red-light);
+}
+
+#painel-controle p {
+    grid-column: 3;
+    margin: 0;
+    font-size: 1rem;
+    color: var(--arcade-white);
+    letter-spacing: 2px;
+    text-align: right;
+    font-family: inherit;
+    border: 2px solid var(--arcade-gray);
+    padding: 4px 12px;
+    background: var(--arcade-black);
+}
+
+#painel-controle span {
+    font-size: 1.2rem;
+    color: var(--arcade-white);
+    margin-left: 8px;
+    font-family: inherit;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 500px) {
+    #tela {
+        width: 90vw;
+        height: 90vw;
+        max-width: 98vw;
+        max-height: 98vw;
+    }
+    #painel-controle {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 6px 4px;
+    }
+    h1 {
+        font-size: 1.1rem;
+    }
+    #painel-controle p {
+        font-size: 0.8rem;
+        padding: 2px 6px;
+    }
+}
+
+.snake-segment {
+    background: var(--flamengo-red);
+    border: 2px solid var(--flamengo-red-light);
+    box-shadow: 0 0 2px 1px var(--flamengo-red-light);
+    width: 20px;
+    height: 20px;
+    image-rendering: pixelated;
+    animation: brilho-cobra 0.6s infinite alternate;
+}
+
+@keyframes brilho-cobra {
+    0% { box-shadow: 0 0 2px 1px var(--flamengo-red-light); }
+    100% { box-shadow: 0 0 6px 2px var(--flamengo-red-light); }
+}
+
+.comida {
+    background: var(--arcade-white);
+    border: 2px solid var(--arcade-gray);
+    box-shadow: 0 0 2px 1px var(--arcade-gray);
+    width: 20px;
+    height: 20px;
+    border-radius: 0; /* quadrado, para manter 8-bit */
+    image-rendering: pixelated;
+    animation: pulsar-comida 0.8s infinite alternate;
+}
+
+@keyframes pulsar-comida {
+    0% { box-shadow: 0 0 2px 1px var(--arcade-gray); }
+    100% { box-shadow: 0 0 8px 2px var(--arcade-gray); }
+}
+
+#hud-pontuacao {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-family: 'Press Start 2P', 'VT323', 'Pixelify Sans', monospace;
+    font-size: 1.1rem;
+    color: var(--arcade-white);
+    background: var(--arcade-black);
+    border: 2px solid var(--arcade-gray);
+    padding: 6px 18px;
+    letter-spacing: 2px;
+    z-index: 10;
+    text-align: right;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 2px var(--arcade-black);
+}
+
+@media (max-width: 600px) {
+    #hud-pontuacao {
+        top: 8px;
+        right: 8px;
+        font-size: 0.8rem;
+        padding: 2px 6px;
+    }
+}
+
+canvas, #tela, .snake-segment, .comida {
+    border-radius: 0 !important;
+    image-rendering: pixelated !important;
+}
+
+#logo-flamengo, .hud-logo {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+    margin: 0 auto 8px auto;
+    background: transparent;
+    border: none;
+    /* Para HUD, ajuste tamanho e alinhamento */
+    vertical-align: middle;
+}
+
+#hud-pontuacao {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* ...restante do seu estilo... */
+}
